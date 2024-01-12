@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Recibo</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      margin: 0; /* Eliminar el margen */
+      padding: 0; /* Eliminar el padding */
+    }
+    .container {
+      width: 40%; /* Reducir el ancho del contenedor */
+      padding: 20px;
+      border: none; /* Eliminar el borde */
+      text-align: left; /* Alinear todo a la izquierda */
+    }
+    hr {
+      border: none;
+      border-top: 1px dashed black;
+    }
+    table {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    td {
+      padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p><strong>Ropa</strong></p>
+    <p>Cochambaba - Bolivia</p>
+    <p>NIT: <span id="99999"></span></p>
+    <hr>
+    <p>FECHA: <span id="fecha"></span></p>
+    <p>NIT/CI: <span id="nitci"></span></p>
+    <p>COD CLIENTE: <span id="codigocliente"></span></p>
+    <p>NOMBRE: <span id="nombre"></span></p>
+    <hr>
+    <table>
+      <tr>
+        <td>Descripcion</td>
+        <td style="text-align: right;">Total</td>
+      </tr>
+      <tr>
+        <td><span id="descripcion"></span></td>
+        <td style="text-align: right;"><span class="montoapagar"></span> Bs</td>
+      </tr>
+    </table>
+    <hr>
+    <table>
+      <tr>
+        <td>MONTO A PAGAR:</td>
+        <td style="text-align: right;"><span class="montoapagar"></span> Bs</td>
+      </tr>
+      <tr>
+        <td>EFECTIVO:</td>
+        <td style="text-align: right;"><span id="dineroentrante"></span> Bs</td>
+      </tr>
+      <tr>
+        <td>CAMBIO:</td>
+        <td style="text-align: right;"><span id="total"></span> Bs</td>
+      </tr>
+    </table>
+    <hr>
+    <p>Emitido por: Susana</p>
+  </div>
+  <script>
+    var montoapagar = localStorage.getItem('montoapagar');
+    document.getElementById('nombre').innerText = localStorage.getItem('nombre');
+    document.getElementById('nitci').innerText = localStorage.getItem('nitci');
+    document.getElementById('codigocliente').innerText = localStorage.getItem('codigocliente');
+    document.getElementById('descripcion').innerText = localStorage.getItem('descripcion');
+    var montoapagarElements = document.getElementsByClassName('montoapagar');
+    for (var i = 0; i < montoapagarElements.length; i++) {
+      montoapagarElements[i].innerText = montoapagar;
+    }
+    document.getElementById('dineroentrante').innerText = localStorage.getItem('dineroentrante');
+    document.getElementById('total').innerText = localStorage.getItem('total');
+    document.getElementById('fecha').innerText = localStorage.getItem('fecha');
+  </script>
+</body>
+</html>

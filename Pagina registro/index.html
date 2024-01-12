@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Formulario Registro</title>
+</head>
+<body>
+  <div class="container">
+    <form onsubmit="storeData(); return false;" class="form-register">
+      <h4>Formulario Registro</h4>
+      <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre">
+      <input class="controls" type="text" name="nitci" id="nitci" placeholder="NIT/CI">
+      <input class="controls" type="text" name="codigocliente" id="codigocliente" placeholder="Codigo de cliente">
+      <h4>Descripcion</h4>
+      <textarea class="controls" name="descripcion" id="descripcion" placeholder="Descripcion"></textarea>
+      <input class="botons" type="submit" value="Imprimir">
+    </form>
+    <section class="form-efectivo">
+      <h4>Efectivo</h4>
+      <input class="controls" type="number" name="montoapagar" id="montoapagar" placeholder="Monto a pagar" oninput="calculateTotal()">
+      <input class="controls" type="number" name="dineroentrante" id="dineroentrante" placeholder="Dinero entrante" oninput="calculateTotal()">
+      <input class="controls" type="text" name="total" id="total" placeholder="Cambio" readonly>
+      <input class="controls" type="date" name="fecha" id="fecha">
+    </section>
+  </div>
+  <script>
+    window.onload = function() {
+      // Set the client code to a random string
+      document.getElementById('codigocliente').value = Math.random().toString(36).substring(2, 10).toUpperCase();
+
+      // Set the date to the current system date
+      document.getElementById('fecha').valueAsDate = new Date();
+    };
+
+    function calculateTotal() {
+      var montoapagar = parseFloat(document.getElementById('montoapagar').value) || 0;
+      var dineroentrante = parseFloat(document.getElementById('dineroentrante').value) || 0;
+      document.getElementById('total').value = dineroentrante - montoapagar;
+    }
+
+    function storeData() {
+      localStorage.setItem('nombre', document.getElementById('nombre').value);
+      localStorage.setItem('nitci', document.getElementById('nitci').value);
+      localStorage.setItem('codigocliente', document.getElementById('codigocliente').value);
+      localStorage.setItem('descripcion', document.getElementById('descripcion').value);
+      localStorage.setItem('montoapagar', document.getElementById('montoapagar').value);
+      localStorage.setItem('dineroentrante', document.getElementById('dineroentrante').value);
+      localStorage.setItem('total', document.getElementById('total').value);
+      localStorage.setItem('fecha', document.getElementById('fecha').value);
+      window.location.href = 'Recibo.html';
+    }
+  </script>
+</body>
+</html>
